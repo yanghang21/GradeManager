@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-28 7:17:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.stu.domain.Credit" table="CREDIT">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="sno" type="long">
+            <column name="SNO" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="bj" type="java.lang.String">
+            <column name="BJ" />
+        </property>
+        <property name="yw" type="int">
+            <column name="YW" />
+        </property>
+        <property name="sx" type="int">
+            <column name="SX" />
+        </property>
+        <property name="yy" type="int">
+            <column name="YY" />
+        </property>
+        <property name="wl" type="int">
+            <column name="WL" />
+        </property>
+        <property name="hx" type="int">
+            <column name="HX" />
+        </property>
+        <property name="sw" type="int">
+            <column name="SW" />
+        </property>
+        <property name="_sum" type="int">
+            <column name="_SUM" />
+        </property>
+        <property name="_avg" type="int">
+            <column name="_AVG" />
+        </property>
+        <property name="credit" type="float">
+            <column name="CREDIT" />
+        </property>
+        <property name="ywR" type="int">
+            <column name="YWR" />
+        </property>
+        <property name="sxR" type="int">
+            <column name="SXR" />
+        </property>
+        <property name="yyR" type="int">
+            <column name="YYR" />
+        </property>
+        <property name="wlR" type="int">
+            <column name="WLR" />
+        </property>
+        <property name="hxR" type="int">
+            <column name="HXR" />
+        </property>
+        <property name="swR" type="int">
+            <column name="SWR" />
+        </property>
+        <property name="_sumR" type="int">
+            <column name="_SUMR" />
+        </property>
+        <property name="_avgR" type="int">
+            <column name="_AVGR" />
+        </property>
+        <property name="creditR" type="int">
+            <column name="CREDITR" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

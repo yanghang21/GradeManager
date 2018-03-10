@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-17 21:44:07 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.stu.domain.User" table="USER">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="loginName" type="java.lang.String" unique="true">
+            <column name="LOGINNAME" />
+        </property>
+        <property name="number" type="java.lang.String">
+            <column name="NUMBER" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="role" type="java.lang.String">
+            <column name="ROLE" />
+        </property>
+        
+          <set name="privileges" table="PRIVILEGE" cascade="all" lazy="false">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <one-to-many class="cn.stu.domain.Privilege" />
+        </set>
+    </class>
+</hibernate-mapping>

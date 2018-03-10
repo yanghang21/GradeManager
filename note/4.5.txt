@@ -1,0 +1,28 @@
+1.poi发起action请求后，可以return null,struts2-xml不需要对应的结果集。
+2.用户权限：list<Privelege> 
+		-------Map(key,value)
+3.url的传参取值${param.sno};//"<%=request.getParameter("sno") %>";
+4.<s:iterator value="#classes" var="bj">	赋值给临时变量
+select distinct(u.bj) FROM StudentInfo u选出bj集合
+5.@resource默认名称装配，找不到则类型装配@autowired类型装配
+6@transaction最好在具体的实现类上（类中所有方法生效，默认propagation是required，即有事务则用，没有开一个），在接口上不能继承，只能实现代理才有效。也可以在方法上使用
+7.OpenSessionInViewFilter调用流程:request(请求)->open session并开始transaction->controller->View(Jsp)->结束transaction并close session.
+8. $("#table1 tr")选择id下的tr
+9.struts2的url-pattern为/*则bootstrap框架资源访问不到，不起作用。因此配置两个*.jsp和*.action
+10.login.filter只拦截jsp，否则css文件访问不到，那么第一次访问首页，没css布局。
+11.对于action,loginfilter不能有效拦截，因为被struts2的拦截器先一步拦截处理了，但是loginfilter还不能放到struts2拦截器的前面，因此修改struts2的默认拦截器栈，对于所有的action访问，判断用户的登陆信息。
+12.不足，前期程序没改成utf-8,目前Java文件改成utf-8乱码
+13.<!-- web路径：
+不以/开始的相对路径，找资源，以当前资源的路径为基准，经常容易出问题。
+以/开始的相对路径，找资源，以服务器的路径为标准(http://localhost:3306)；需要加上项目名
+		http://localhost:3306/crud
+ -->
+ 14.labelfor绑定输入框，点击label可聚焦绑定的输入框。
+ 15.<a href="javascript:viod(0)" id="user_add_modal_btn"><font size="4" color="red">注册新用户？</font></a>
+ 设置不跳转
+ 16.change事件是文本内容改变触发blur是失去焦点触发
+ 17.javascript:if(confirm('确定删除？')) location.href='grade_delete.action?id=%{id}&bj=%{bj}&course=%{course}'
+ 18.attr获得自定义属性，prop获得dom原生属性。
+ 19.全选，var flag = $(".check_item:checked").length==$(".check_item").length;
+			$("#check_all").prop("checked",flag);
+20.如果有modeldriven先于param拦截，那么设置为别的属性名，Ognl可能转换异常。

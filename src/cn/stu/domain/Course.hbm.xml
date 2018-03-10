@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-17 21:44:07 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.stu.domain.Course" table="COURSE">
+    <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+      
+        <property name="cname" type="java.lang.String">
+            <column name="CNAME" />
+        </property>
+        <property name="credit" type="int">
+            <column name="CREDIT" />
+        </property>
+        
+        	<!-- course属性，本类与Course的多对多-->
+		<set name="students" table="student_course" >
+			<key column="CourseID"></key>
+			<many-to-many class="cn.stu.domain.StudentInfo" column="StudentID"></many-to-many>
+		</set>
+		<!--  与教师的一对多-->
+		<set name="teachers" table="TEACHER" >
+			<key column="CourseID"></key>
+			<one-to-many class="cn.stu.domain.Teacher" />
+		</set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+验证码：
+<img id="img" alt="" src="<%=basePath%>VerifyServlet">
+通过请求servlet。跟jfreechart类似
+VerifyCode.output(vc.getImage(), response.getOutputStream());
+将流给response，src即可请求到图片
+src用全路径，即http://.../servlet
+ActionContext.getContext().getSession()和request.getSession得到的是同一个session
+用法不同，前者put ,get 后者setAttribute getAttribute
+tomcat默认编码iso8891,可改配置
+get请求中的中文参数乱码可以getbytes打散，new string(byte,utf8)还原

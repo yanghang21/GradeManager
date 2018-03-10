@@ -1,0 +1,33 @@
+a{text-decoration:none}
+.datalist{
+	border:1px solid #0058a3;	/* 表格边框 */
+	font-family:Arial;
+	border-collapse:collapse;	/* 边框重叠 */
+	background-color:#eaf5ff;	/* 表格背景色 */
+	font-size:18px;
+}
+.datalist caption{
+	border:1px solid #0058a3;
+    padding-bottom:5px;
+    font:bold 1.4em;
+    text-align:left;
+}
+.datalist th{
+	border:1px solid #0058a3;	/* 行名称边框 */
+	background-color:#4bacff;	/* 行名称背景色 */
+	color:#FFFFFF;				/* 行名称颜色 */
+	font-weight:bold;
+	padding-top:8px; padding-bottom:8px;
+	padding-left:16px; padding-right:16px;
+	text-align:center;
+}
+.datalist td{
+	border:1px solid #0058a3;	/* 单元格边框 */
+	text-align:left;
+	padding-top:6px; padding-bottom:6px;
+	padding-left:12px; padding-right:12px;
+}
+.datalist tr:hover, .datalist tr.altrow{
+    background-color:#c4e4ff;   /* 动态变色 */
+}
+

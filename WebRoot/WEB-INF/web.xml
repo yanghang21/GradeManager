@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+    
+     <servlet>  
+    <servlet-name>DisplayChart</servlet-name>  
+    <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>  
+     </servlet>
+  <servlet>
+    <servlet-name>VerifyServlet</servlet-name>
+    <servlet-class>cn.stu.utils.VerifyServlet</servlet-class>
+  </servlet>
+  
+<servlet-mapping>  
+    <servlet-name>DisplayChart</servlet-name>  
+    <url-pattern>/DisplayChart</url-pattern>  
+</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VerifyServlet</servlet-name>
+    <url-pattern>/VerifyServlet</url-pattern>
+  </servlet-mapping>
+	
+	<!-- 配置Spring的用于初始化容器对象的监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext*.xml</param-value>
+	</context-param>
+
+	<!--
+		用于做初始化工作的监听器，一定要配置到Spring的ContextLoaderListener之后，因为要用到Spring的容器对象
+	-->
+	
+
+
+	<!-- 配置Spring的用于解决懒加载问题的过滤器 ,解决hibernate懒加载时，会话丢失问题-->
+	<filter>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+
+	
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>struts3</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts3</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+   <filter>       
+         <filter-name>loginFilter</filter-name>       
+         <filter-class>cn.stu.utils.LoginFilter</filter-class>       
+    </filter>       
+      <filter-mapping>    
+         <filter-name>loginFilter</filter-name>    
+         <url-pattern>*.jsp</url-pattern>    
+      </filter-mapping>
+  
+
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

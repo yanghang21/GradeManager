@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-17 21:44:07 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.stu.domain.StudentInfo" table="STUDENT_INFO">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+       
+        
+        <property name="sno" >
+            <column name="SNO" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="bj" type="java.lang.String">
+            <column name="BJ" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="SEX" />
+        </property>
+        <property name="age" type="int">
+            <column name="AGE" />
+        </property>
+        <property name="dept" type="java.lang.String">
+            <column name="DEPT" />
+        </property>
+        <property name="phoneNum" type="java.lang.String">
+            <column name="PHONENUM" />
+        </property>
+        <!-- 与成绩的一对多关联，inverse设置由多的一方维护关联关系 -->
+        <set name="grades" table="GRADE" inverse="true" cascade="all">
+			<key column="StudentID"></key>
+			<one-to-many class="cn.stu.domain.Grade" />
+		</set>
+		<!-- course属性，本类与Course的多对多-->
+		<set name="courses" table="student_course" inverse="true" cascade="all">
+			<key column="StudentID"></key>
+			<many-to-many class="cn.stu.domain.Course" column="CourseID"></many-to-many>
+		</set>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名配置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+    
+
+    
+    
+    <package name="default" namespace="/" extends="struts-default"> <!--包名并不重要-->
+	    <interceptors>
+    	<interceptor class="cn.stu.utils.AuthorityInterceptor" name="authority" />
+    	<interceptor-stack name="mydefault">
+    	<interceptor-ref name="defaultStack"></interceptor-ref>
+    	<interceptor-ref name="authority"></interceptor-ref>
+    	</interceptor-stack>
+    	</interceptors>
+    	
+    	<!-- 重新定义默认拦截器 -->
+    	<default-interceptor-ref name="mydefault" />
+    	<global-results>
+    	<result name="login" type="redirect">/index.jsp</result>
+    	</global-results>
+   
+		<!-- 全局异常配置 -->
+		<global-exception-mappings> 
+            <exception-mapping result="OB" exception="java.lang.ArrayIndexOutOfBoundsException"/> 
+            <exception-mapping result="OA" exception="java.lang.NoSuchMethodException"/> 
+            <exception-mapping result="OC" exception="java.lang.NullPointerException"/> 
+        </global-exception-mappings>
+        
+        
+      <action name="chart2_*" class="chart2Action" method="{1}">
+      <result name="success">/WEB-INF/jsp/gradeAction/showGrade.jsp</result>
+      </action>
+      <action name="credit_*" class="creditAction" method="{1}">
+     <result name="showCredit" >/WEB-INF/jsp/gradeAction/showCredit.jsp</result>
+      </action>
+      
+		<!-- 首页 -->
+		<action name="home_*" class="homeAction" method="{1}">
+			<result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
+		</action>
+        
+		<!-- 课程 -->
+		<action name="course_*" class="courseAction" method="{1}">
+			<result name="addSuccess" type="redirect">/inputCourse.jsp</result>
+			<result name="list" >/WEB-INF/jsp/courseAction/showCourse.jsp</result>
+			<result name="beforeAdd" >/WEB-INF/jsp/courseAction/showTeachers.jsp</result>
+			<result name="queryByClass" >/QueryByClass.jsp</result>
+		
+		</action>
+	
+		
+				<!-- 用户管理 -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="register">/WEB-INF/jsp/userAction/register.jsp</result>
+			<result name="loginFailed" >/index.jsp</result>
+			<result name="loginSuccess">/WEB-INF/jsp/homeAction/index.jsp</result>
+			<result name="addSuccess" type="redirect">/index.jsp</result>
+			<result name="logOut" type="redirect">/index.jsp</result>
+			<result name="list">/WEB-INF/jsp/userAction/userList.jsp</result>
+			<result name="OC">/index.jsp</result> 
+			
+		</action>
+				<!-- 成绩查询 -->
+		<action name="query_*" class="queryAction" method="{1}">
+			<result name="success" >/WEB-INF/jsp/gradeAction/showGrade.jsp</result>
+			<result name="personGrade" >/WEB-INF/jsp/gradeAction/showOneGrade.jsp</result>
+			<result name="OA">error.jsp</result> 
+			
+		</action>
+				<!-- 学生添加 -->
+		<action name="student_*" class="studentAction" method="{1}">
+			<result name="addSuccess" type="redirect">/inputStudent.jsp</result>
+			<result name="list" >/WEB-INF/jsp/studentAction/showStudent.jsp</result>
+			<result name="modify">/WEB-INF/jsp/studentAction/modifyStudent.jsp</result>
+			<result name="courselist">/WEB-INF/jsp/studentAction/showCourse.jsp</result>
+		</action> 
+				<!-- 成绩添加 -->
+		<action name="grade_*" class="gradeAction" method="{1}">
+			<result name="OB">error.jsp</result> 
+			<result name="addSuccess" type="redirect">/inputGrade.jsp</result>
+			<result name="tolist" >/WEB-INF/jsp/gradeAction/showGrade.jsp</result>
+			<result name="toperson" >/WEB-INF/jsp/gradeAction/showOneGrade.jsp</result>
+			<result name="modify" >/WEB-INF/jsp/gradeAction/modifyGrade.jsp</result>
+			<result name="class" >/WEB-INF/jsp/gradeAction/showClass.jsp</result>
+		
+		</action>
+
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>

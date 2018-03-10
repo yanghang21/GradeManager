@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-17 21:44:07 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.stu.domain.Grade" table="GRADE">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+       
+        <property name="course" >
+            <column name="COURSE" />
+        </property>
+        <property name="grade" type="int">
+            <column name="GRADE" />
+        </property>
+        <property name="rank" type="int">
+            <column name="RANK" />
+        </property>
+        
+        		<!-- student属性，本类与Student的多对一 -->
+		<many-to-one name="student" 
+		class="cn.stu.domain.StudentInfo" column="StudentID"
+		lazy="false">
+		</many-to-one>
+    </class>
+</hibernate-mapping>
